@@ -7,6 +7,10 @@ Welcome, {{username}}!
 </form>
 <br>
 
+<form action="find-needs" method="get">
+    <button type="submit">See Needs</button>
+</form>
+
 <form action="/add-wine" method="post">
     <input type="text" placeholder="Name" name="wineName"/>
     <input type="number" placeholder="Cost" name="cost"/>
@@ -17,7 +21,7 @@ Welcome, {{username}}!
 
 <ol>
 {{#wines}}
-    <li><b>{{wineName}}</b> Cost: {{cost}} Minimum: {{minimum}} Stock: {{stock}}
+    <li><b>{{wineName}}</b> Cost: ${{cost}} Minimum: {{minimum}} In-Stock: {{stock}}
         <form action="/update-wine" method="post" style="display: inline-block">
             <input type="hidden" name="id" value="{{id}}"/>
             <input type="number" name="stock" placeholder="New Stock"/>

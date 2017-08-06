@@ -16,7 +16,7 @@ public class Wine {
     double cost;
 
     @Column(nullable = false)
-    Integer minimum;
+    double minimum;
 
     @Column(nullable = false)
     double stock;
@@ -24,7 +24,7 @@ public class Wine {
     public Wine() {
     }
 
-    public Wine(String wineName, double cost, Integer minimum, double stock) {
+    public Wine(String wineName, double cost, double minimum, double stock) {
         this.wineName = wineName;
         this.cost = cost;
         this.minimum = minimum;
@@ -47,7 +47,7 @@ public class Wine {
         this.cost = cost;
     }
 
-    public int getMinimum() {
+    public double getMinimum() {
         return minimum;
     }
 

@@ -15,6 +15,8 @@ import com.delligatti.Wineventory.services.UserRepository;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @Controller
 public class WineventoryController {
@@ -71,7 +73,7 @@ public class WineventoryController {
     }
 
     @RequestMapping(path = "/add-wine", method = RequestMethod.POST)
-    public String addWine(String wineName, double cost, Integer minimum, double stock){
+    public String addWine(String wineName, double cost, double minimum, double stock){
         Wine wine = new Wine(wineName, cost, minimum, stock);
         wines.save(wine);
         return "redirect:/";
@@ -89,5 +91,17 @@ public class WineventoryController {
         wine.setStock(stock);
         wines.save(wine);
         return "redirect:/";
+    }
+
+    @RequestMapping(path = "/find-needs", method = RequestMethod.GET)
+    public String needs(Model model){
+        ArrayList<Wine> needs = new ArrayList<>();
+        for (Wine wine: wines.findAll()){
+            if (wine.getMinimum() > wine.getStock()){
+                needs.add(wine);
+            }
+            model.addAttribute("needs", needs);
+        }
+        return "needs";
     }
 }

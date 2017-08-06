@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Needs</title>
+</head>
+Wines under minimum:
+<body>
+<ol>
+{{#needs}}
+<li><b>{{wineName}}</b> Cost: ${{cost}} Minimum: {{minimum}} In-Stock: {{stock}}
+    <form action="/update-wine" method="post" style="display: inline-block">
+        <input type="hidden" name="id" value="{{id}}"/>
+        <input type="number" name="stock" placeholder="New Stock"/>
+        <button type="submit">Update Stock</button>
+    </form>
+    <form action="/delete-wine" method="delete" style="display: inline-block">
+        <input type="hidden" name="id" value="{{id}}"/>
+        <button type="submit">Delete Item</button>
+    </form>
+</li>
+{{/needs}}
+</ol>
+
+<form action="/" method="get">
+    <button type="submit">Home</button>
+</form>
+</body>
+</html>
