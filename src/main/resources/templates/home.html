@@ -1,0 +1,33 @@
+<html>
+<body>
+{{^user}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Username" name="userName" required/>
+    <input type="password" placeholder="Password" name="password" required/>
+    <button type="submit">Login</button>
+</form>
+{{/user}}
+
+{{#user}}
+Welcome, {{username}}!
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<br><br>
+
+<form action="/add-wine" method="post">
+    <input type="text" placeholder="Name" name="wineName"/>
+    <input type="number" placeholder="Cost" name="cost"/>
+    <input type="number" placeholder="Minimum Amount" name="minimum"/>
+    <input type="number" placeholder="Stock Amount" name="stock"/>
+    <button type="submit">Add Wine</button>
+</form>
+
+<ol>
+{{#items}}
+    <li>{{wineName}} {{cost}} {{minimum}} {{stock}}</li>
+{{/items}}
+</ol>
+{{/user}}
+</body>
+</html>
