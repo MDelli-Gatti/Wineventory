@@ -3,25 +3,28 @@ package com.delligatti.Wineventory.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "items")
-public class Item {
+@Table(name = "wines")
+public class Wine {
     @Id
     @GeneratedValue
     int id;
 
-    @Column
+    @Column(nullable = false)
     String wineName;
 
-    @Column
+    @Column(nullable = false)
     double cost;
 
-    @Column
-    int minimum;
+    @Column(nullable = false)
+    Integer minimum;
 
-    @Column
+    @Column(nullable = false)
     double stock;
 
-    public Item(String wineName, double cost, int minimum, double stock) {
+    public Wine() {
+    }
+
+    public Wine(String wineName, double cost, Integer minimum, double stock) {
         this.wineName = wineName;
         this.cost = cost;
         this.minimum = minimum;
@@ -48,7 +51,7 @@ public class Item {
         return minimum;
     }
 
-    public void setMinimum(int minimum) {
+    public void setMinimum(Integer minimum) {
         this.minimum = minimum;
     }
 

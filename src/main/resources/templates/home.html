@@ -1,19 +1,11 @@
 <html>
 <body>
-{{^user}}
-<form action="/login" method="post">
-    <input type="text" placeholder="Username" name="userName" required/>
-    <input type="password" placeholder="Password" name="password" required/>
-    <button type="submit">Login</button>
-</form>
-{{/user}}
-
 {{#user}}
 Welcome, {{username}}!
-<form action="/logout" method="post">
+<form action="/logout" method="post" style="display: inline-block">
     <button type="submit">Logout</button>
 </form>
-<br><br>
+<br>
 
 <form action="/add-wine" method="post">
     <input type="text" placeholder="Name" name="wineName"/>
@@ -24,9 +16,19 @@ Welcome, {{username}}!
 </form>
 
 <ol>
-{{#items}}
-    <li>{{wineName}} {{cost}} {{minimum}} {{stock}}</li>
-{{/items}}
+{{#wines}}
+    <li><b>{{wineName}}</b> Cost: {{cost}} Minimum: {{minimum}} Stock: {{stock}}
+        <form action="/update-wine" method="post" style="display: inline-block">
+            <input type="hidden" name="id" value="{{id}}"/>
+            <input type="number" name="stock" placeholder="New Stock"/>
+            <button type="submit">Update Stock</button>
+        </form>
+        <form action="/delete-wine" method="delete" style="display: inline-block">
+            <input type="hidden" name="id" value="{{id}}"/>
+            <button type="submit">Delete Item</button>
+        </form>
+    </li>
+{{/wines}}
 </ol>
 {{/user}}
 </body>
