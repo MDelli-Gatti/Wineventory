@@ -33,7 +33,7 @@ public class WineventoryController {
             User user = new User("Michael", PasswordStorage.createHash("Nitro"));
             users.save(user);
         }
-        Server.createWebServer("-webPort", "1337").start();
+        Server.createWebServer().start();
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
